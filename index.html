@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body onload="initClock()">
+    <div id="wrapper">
+        <div class="container">
+            <div class="datetime">
+              <div class="day">
+                  <span id="dayname">Day</span>
+              </div>
+              <div class="LessImportantDivs">
+                <div class="date">
+                  <span id="month">Month</span>
+                  <span id="daynum">00</span>,
+                  <span id="year">Year</span>.
+                </div>
+                <div class="time">
+                  -<span id="hour">00</span>:
+                  <span id="minutes">00</span>-
+                </div>
+              </div>
+            </div>
+            <img src="images/bg.png" class="background">
+            <img src="images/fg.png" class="foreground">
+        </div>
+    </div>
+    <script type="text/javascript">
+        function updateClock(){
+          var now = new Date();
+          var dname = now.getDay(),
+              mo = now.getMonth(),
+              dnum = now.getDate(),
+              yr = now.getFullYear(),
+              hou = now.getHours(),
+              min = now.getMinutes();
+    
+              Number.prototype.pad = function(digits){
+                for(var n = this.toString(); n.length < digits; n = 0 + n);
+                return n;
+              }
+    
+              var months = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"];
+              var week = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
+              var ids = ["dayname", "month", "daynum", "year", "hour", "minutes"];
+              var values = [week[dname], months[mo], dnum.pad(2), yr, hou.pad(2), min.pad(2)];
+              for(var i = 0; i < ids.length; i++)
+              document.getElementById(ids[i]).firstChild.nodeValue = values[i];
+        }
+    
+        function initClock(){
+        updateClock();
+        window.setInterval("updateClock()", 1);
+        // Adds the clock movement functionality 
+        const datetime = document.querySelector(".datetime");
+        let isMoving = false;
+        let offsetX = 0;
+        let offsetY = 0;
+
+        datetime.addEventListener("mousedown", function(event) {
+          isMoving = true;
+          offsetX = event.clientX - datetime.getBoundingClientRect().left;
+          offsetY = event.clientY - datetime.getBoundingClientRect().top;
+          event.preventDefault();  
+        });
+
+        window.addEventListener("mousemove", function(event) {
+          if (!isMoving) return;
+          datetime.style.left = (event.clientX - offsetX + datetime.offsetWidth / 2) + 'px';
+          datetime.style.top = (event.clientY - offsetY) + 'px';
+        });
+
+        window.addEventListener("mouseup", function(event) {
+          isMoving = false;
+        });
+      }
+        </script>
+</body>
+</html>

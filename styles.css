@@ -1,0 +1,111 @@
+
+.background{
+    pointer-events: none;
+    position:absolute;
+    height:100%;
+    width: 100%;
+    z-index: -1;
+    object-fit: cover;
+    /* fit image in container */
+
+}
+.foreground{
+    pointer-events: none;
+    position:absolute;
+    height:100%;
+    width: 100%;
+    z-index: 1;
+    object-fit: cover;
+    /* fit image in container */
+
+}
+.datetime{
+    position: absolute;
+    top: 28%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
+}
+
+@font-face {
+    font-family: 'font1';
+    src: url(fonts/font1.otf);
+}
+
+@font-face {
+  font-family: 'font2';
+  src: url(fonts/font2.ttf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+  }
+  
+  
+  .datetime{
+    cursor: move;
+    color: #fff;
+    font-family: "font1", sans-serif;
+    width: 900px;
+    padding: 15px 10px;
+    transition: 0.5s;
+    transition-property: background, box-shadow;
+  }
+  
+  
+  .date{
+    font-family: "font2", sans-serif;
+    font-size: 10px;
+    font-weight: 100;
+    text-align: center;
+    letter-spacing: 3px;
+    padding-right: 32%;
+  }
+
+  .day{
+    text-align: center;
+    letter-spacing: 3px;
+  }
+  
+  .time{
+    font-family: "font2", sans-serif;
+    font-size: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .time{
+    position: relative;
+    margin: 0 0px;
+    font-weight: 100;
+    text-align: center;
+    letter-spacing: 5px;
+  }
+
+  .day{
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .day{
+    position: relative;
+    margin: 0 6px;
+    font-weight: 400;
+    text-align: center;
+    letter-spacing: 30px;
+    padding-bottom: 0px;
+  }
+
+  .LessImportantDivs{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+        
